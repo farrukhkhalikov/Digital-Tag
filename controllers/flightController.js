@@ -1,34 +1,56 @@
-var express = require('express')
-var router = express.Router({
-    mergeParams: true
-})
-var Flight = require('../models/flight')
-var User = require('../models/user')
-var Bag = require('../models/bags')
+const express = require('express');
+const router = express.Router({ mergeParams: true })
+const Flight = require('../db/models/flight')
 
- 
-
-///index route
-router.get('/', (req, res) => {
- Flight.find().then((flights) => {
-     console.log(flights)
-     res.render('flight/index', {
-         flights: flights
-     })
-     console.log('Flight data', flights)
- })
+router.get('/', async (req, res) => {
+    Flight.find({}).then(flights => { 
+        res.json(flights)
+    }).catch(err => {
+        console.log(err)
+        res.json("caught error")
+    })
 })
 
-/// show route
-router.get('/:id', (req, res) => {
-    Flight.findById(req.params.id).then((flight) => {
-        res.render('flight/show', {
-            flight: flight
-        })
-    }) 
-  })
+router.get('/:flightId', async (req, res) => {
+    try {
+        console.log(req.params.flightId)
+        const flight = await Flight.findById(req.params.flightId)
+        res.json(flight)
+    } catch (err) {
+        res.send(err)
+    }
+})
 
-  
-  
-  
-  module.exports = router
+router.post('/', async (req, res) => {
+    try {
+        const newFlight = await Flight.create(req.body)
+        res.json(newFlight)
+    }   catch (error) {
+        console.log(error)
+        res.sendStatus(500)
+    }
+})
+
+router.delete('/:flightId', async (req, res) => {
+    try {
+        await FlightfindByIdAndRemove(req.params.flightId)
+        res.sendStatus(200)
+    }   catch (error) {
+        console.log(error)
+        res.sendStatus(500)
+    }
+})
+
+router.patch('/:flightId', async (req, res) => {
+    try {
+        const updatedFlight =
+         await Flight.findByIdAndUpdate(req.params.flightId, req.body, {new: true})
+    console.log('FromFlightPatch:'+req.body)
+        res.json(updatedFlight)
+    } catch (error) {
+      console.log(error)
+      res.sendStatus(500)
+    }
+})
+
+module.exports = router
