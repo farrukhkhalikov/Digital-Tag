@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "dev": "concurrently \"nodemon server.js\" \"cd ./client  && npm start \" ",
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "cd client && npm install && npm run build"
   },

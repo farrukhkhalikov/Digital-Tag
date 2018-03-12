@@ -25,13 +25,13 @@ connection.on('error', (err) => {
 }) 
 
 // //serve static react files
-// app.use(express.static(`${__dirname}  /client/build/`))
-// app.get('/', (req, res) => {
-//   res.sendFile(`${__dirname}  /client/build/index.html`)
-// })
+app.use(express.static(`${__dirname}  /client/build/`))
+app.get('/', (req, res) => {
+  res.sendFile(`${__dirname}  /client/build/index.html`)
+})
 // // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -64,4 +64,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+  console.log(`App listening on ${PORT}`)
+})
