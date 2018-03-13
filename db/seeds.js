@@ -8,30 +8,13 @@ mongoose.connect(process.env.MONGODB_URI)
 
 
 
-var ryan = new User({
-    first_name: 'Ryan',
-    last_name: 'Sneider',
-    flight: 0987,
-    email: 'ryan@gmail.com',
-    bags: [bagSchema] ///???? 
-    
-})
 
-var steve = new User({
-    first_name: 'Steve',
-    last_name: 'Gosling',
-    flight: 0987,
-    email: 'steve@gmail.com',
-    bags: [bagSchema] ///??????
-    
-})
+var bag1 = new Bags({
+    weight: 123,
+    color: "black",
+    destination: "Paris",
+    tagNumber: 124123123,
 
-var owen = new User({
-    first_name: "Owen",
-    last_name: "Liversidge",
-    flight: 09889,
-    email: "owen@liversidge.com",
-    bags: [bagSchema] ////?????
 })
 
 var flightBags = new Bags({
@@ -39,53 +22,80 @@ var flightBags = new Bags({
     color: "grey",
     destination: "Frankfurt",
     tagNumber: 123134324,
-    users: [userSchema] ////??????
-  })
+})
 
-  const bag1 = new Bags({
-    weight: 123,
-    color: "black",
-    destination: "Paris",
-    tagNumber: 124123123,
-    users: [steve] ///?????
+var ryan = new User({
+    first_name: 'Ryan',
+    last_name: 'Sneider',
+    flight: 0987,
+    email: 'ryan@gmail.com',
+    bags: [bag1]
 
-  })
+})
 
-const flight = new Flight({
+
+
+
+var steve = new User({
+    first_name: 'Steve',
+    last_name: 'Gosling',
+    flight: 0987,
+    email: 'steve@gmail.com',
+    bags: []
+
+})
+
+
+
+var owen = new User({
+    first_name: "Owen",
+    last_name: "Liversidge",
+    flight: 09889,
+    email: "owen@liversidge.com",
+    bags: [flightBags]
+})
+
+
+
+var flight = new Flight({
     number: 9827439287394887,
     destination: "Amsterdam",
     arrival: 1445,
     departure: 0900,
-    users: [userSchema] /////???????
+    users: [owen]
 })
-const flight2 = new Flight({
+
+var flight2 = new Flight({
     number: 090897239470978,
     destination: "Frankfurt",
     arrival: 1315,
     departure: 1800,
-    users: [userSchema] ///????
+    users: [ryan]
 })
-const flight3 = new Flight({
+
+var flight3 = new Flight({
     number: 0923840239840998203,
     destination: "London",
     arrival: 0930,
     departure: 1700,
-    users: [userSchema] ////?????
+    users: [steve]
 })
-const flight4 = new Flight({
+
+var flight4 = new Flight({
     number: 123240089902308,
     destination: "Paris",
     arrival: 1130,
     departure: 2100,
-    users: [userSchema]
+    users: []
 })
+
 User.remove().then(() => {
     return Bags.remove().then(() => {
         return Flight.remove()
     })
 }).then(() => {
     //console.log(flight)
-    Flight.insertMany([flight, flight2, flight3, flight4]).then(()=> {
+    Flight.insertMany([flight, flight2, flight3, flight4]).then(() => {
         console.log('saved worked')
     })
 })

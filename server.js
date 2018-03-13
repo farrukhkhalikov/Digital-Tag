@@ -8,10 +8,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
 
-const app = express();
+const userController = require('./controllers/userController')
+const flightController = require('./controllers/flightController')
 
-//mongo settings
-mongoose.Promise = global.Promise
+const app = express();
 mongoose.connect(process.env.MONGODB_URI)
 
 const connection = mongoose.connection
@@ -19,13 +19,12 @@ connection.on('connected', () => {
   console.log('Mongoose Connected Successfully')
 })
 
-// If the connection throws an error
 connection.on('error', (err) => {
   console.log('Mongoose default connection error: ' + err)
 }) 
 
-//serve static react files
 app.use(express.static(__dirname + '/client/build/'))
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/client/build/index.html')
 })
@@ -40,14 +39,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-const user = require('./controllers/userController')
-app.use('/api/users', user)
-const flight = require('./controllers/flightController')
-app.use('/api/flights', flight)
-// ./controllers/users
-const { User } = require('./db/schema')
+
+app.use('/api/users', userController)
+app.use('/api/flights', flightController)
+//const { User } = require('./db/schema')
+
+
 const router = express.Router()
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
   err.status = 404;
@@ -56,13 +54,11 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(err);
 });
 
 

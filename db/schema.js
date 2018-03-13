@@ -9,8 +9,7 @@ var bagSchema = new Schema({
     weight: Number,
     color: String,
     destination: String,
-    tagNumber: Number,
-    users: [userSchema]
+    tagNumber: Number
   })
 
 ///for user

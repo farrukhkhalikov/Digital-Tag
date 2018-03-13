@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const Schema = require('../schema')
+const { flightSchema } = require('../db/schema')
 
-const Flight = mongoose.model('Flight', Schema.FlightSchema)
+const Flight = mongoose.model('Flight', flightSchema)
 
 module.exports = Flight
