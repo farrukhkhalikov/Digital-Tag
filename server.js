@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-app.use('/api/users', userController)
+app.use('/api/flights/:id/users', userController)
 app.use('/api/flights', flightController)
 //const { User } = require('./db/schema')
 

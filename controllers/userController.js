@@ -1,16 +1,24 @@
 const express = require('express')
-const router = express.Router()
+const router = express.Router({mergeParams: true})
 const User = require('../models/user')
+const Flight = require('../models/flight')
 
 //================================
 //  READ (see all users)
 //================================
 
+
+
+
 router.get('/', (req, res) => {
-    User.find().then(users => { 
-        
-        res.send(users)
-        console.log(users)
+    const flightId = req.params.id
+    console.log(flightId)
+    Flight.findById(flightId)
+    
+    .then((flight) => { 
+        var user = flight.users
+        res.json(user)
+        console.log(user)
     }).catch(err => {
         console.log(err)
         res.json("caught error")

@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:flightId', async (req, res) => {
     try {
-        console.log(req.params.flightId)
+       // console.log(req.params.flightId)
         const flight = await Flight.findById(req.params.flightId)
         res.json(flight)
     } catch (err) {
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
 
 router.delete('/:flightId', async (req, res) => {
     try {
-        await FlightfindByIdAndRemove(req.params.flightId)
+        await Flight.findByIdAndRemove(req.params.flightId)
         res.sendStatus(200)
     }   catch (error) {
         console.log(error)
