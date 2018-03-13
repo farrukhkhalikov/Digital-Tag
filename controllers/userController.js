@@ -48,14 +48,14 @@ router.get('/:userId', (req, res) => {
 // create a new user
 router.post('/', async (req, res) => {
     try {
-        const newUser = new User(req.body.user)
+        const newUser = new User(req.body)
         console.log(newUser)
 
-        const user = await Flight.findById(req.params.id)
+        const flight = await Flight.findById(req.params.id)
 
-        user.flight.push(newUser)
+        flight.users.push(newUser)
 
-        const saved = await user.save()
+        const saved = await flight.save()
         res.json(saved)
     } catch (err) {
         res.send(err)
@@ -77,11 +77,11 @@ router.post('/', async (req, res) => {
 // })
 
 //delete a user
-router.delete('/:userId/delete', async (req, res) => {
+router.delete('/:userId', async (req, res) => {
     try {
         const flight = await Flight.findById(req.params.id)
-        flight.user.id(req.params.userId).remove()
-        const saved = await user.save()
+        flight.users.id(req.params.userId).remove()
+        const saved = await flight.save()
         res.json(saved)
     } catch (err) {
         res.send(err)
@@ -97,17 +97,17 @@ router.delete('/:userId/delete', async (req, res) => {
 // })
 
 // edit a user
-router.patch('/:userId', async (req, res) => {
-    try {
-        const flightId = req.params.id
+// router.patch('/:userId', async (req, res) => {
+//     try {
+//         const flightId = req.params.id
 
-        const updatedUser =
-            await User.findByIdAndUpdate(req.params.userId, req.body, { new: true })
-        res.json(updatedUser) 
-    } catch (error) {
-        console.log(error)
-        res.sendStatus(500) 
-    } 
-})
+//         const updatedUser =
+//             await User.findByIdAndUpdate(req.params.userId, req.body, { new: true })
+//         res.json(updatedUser) 
+//     } catch (error) {
+//         console.log(error)
+//         res.sendStatus(500) 
+//     } 
+// })
 
 module.exports = router
