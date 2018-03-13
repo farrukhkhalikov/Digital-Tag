@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true })
-const Flight = require('../models/flight')
+const Flight = require('../db/models/flight')
 
 router.get('/', async (req, res) => {
     Flight.find({}).then(flights => { 
+        
         res.json(flights)
     }).catch(err => {
         console.log(err)
         res.json("caught error")
     })
 })
+
 
 router.get('/:flightId', async (req, res) => {
     try {

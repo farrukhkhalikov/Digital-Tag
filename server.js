@@ -10,7 +10,7 @@ const mongoose = require('mongoose')
 
 const app = express();
 
-
+//mongo settings
 mongoose.Promise = global.Promise
 mongoose.connect(process.env.MONGODB_URI)
 
@@ -24,14 +24,12 @@ connection.on('error', (err) => {
   console.log('Mongoose default connection error: ' + err)
 }) 
 
-// //serve static react files
-app.use(express.static(`${__dirname}  /client/build/`))
+//serve static react files
+app.use(express.static(__dirname + '/client/build/'))
 app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}  /client/build/index.html`)
+  res.sendFile(__dirname + '/client/build/index.html')
 })
-// // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -42,11 +40,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-const flight = require('./controllers/flightController')
-app.use('/flights', flight)
 const user = require('./controllers/userController')
-app.use('/users', user)
-
+app.use('/api/users', user)
+const flight = require('./controllers/flightController')
+app.use('/api/flights', flight)
+// ./controllers/users
+const { User } = require('./db/schema')
+const router = express.Router()
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
   err.status = 404;
@@ -64,7 +65,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`App listening on ${PORT}`)
 })
+

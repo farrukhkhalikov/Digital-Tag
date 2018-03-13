@@ -9,59 +9,78 @@ mongoose.connect(process.env.MONGODB_URI)
 
 
 var ryan = new User({
-    name: 'Ryan',
-    flightInfo: 0987,
-    destination: 'Paris',
+    first_name: 'Ryan',
+    last_name: 'Sneider',
+    flight: 0987,
     email: 'ryan@gmail.com',
-    bags: [bagSchema]
+    bags: [bagSchema] ///???? 
     
 })
 
 var steve = new User({
-    name: 'Steve',
+    first_name: 'Steve',
+    last_name: 'Gosling',
     flight: 0987,
-    destination: 'Berlin',
     email: 'steve@gmail.com',
-    bags: [bagSchema]
+    bags: [bagSchema] ///??????
     
 })
 
+var owen = new User({
+    first_name: "Owen",
+    last_name: "Liversidge",
+    flight: 09889,
+    email: "owen@liversidge.com",
+    bags: [bagSchema] ////?????
+})
 
+var flightBags = new Bags({
+    weight: 120,
+    color: "grey",
+    destination: "Frankfurt",
+    tagNumber: 123134324,
+    users: [userSchema] ////??????
+  })
+
+  const bag1 = new Bags({
+    weight: 123,
+    color: "black",
+    destination: "Paris",
+    tagNumber: 124123123,
+    users: [steve] ///?????
+
+  })
 
 const flight = new Flight({
-    name: "KLM Dutch Royal Airlines",
-    info: "Amsterdam",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/KLM_logo.svg/1200px-KLM_logo.svg.png",
+    number: 9827439287394887,
+    destination: "Amsterdam",
     arrival: 1445,
     departure: 0900,
-    seats: [flightSeats, seat1]
+    users: [userSchema] /////???????
 })
 const flight2 = new Flight({
-    name: "Delta",
-    info: "Frankfurt",
-    img: "https://i.imgur.com/ExkgKNT.png",
+    number: 090897239470978,
+    destination: "Frankfurt",
     arrival: 1315,
     departure: 1800,
-    seats: [flightSeats, seat1]
+    users: [userSchema] ///????
 })
 const flight3 = new Flight({
-    name: "British Airways",
-    info: "London",
-    img: "http://www.stickpng.com/assets/images/587b50af44060909aa603a7b.png",
+    number: 0923840239840998203,
+    destination: "London",
     arrival: 0930,
     departure: 1700,
-    seats: [flightSeats, seat1]
+    users: [userSchema] ////?????
 })
 const flight4 = new Flight({
-    name: "France Airways",
-    info: "Paris",
-    img: "https://us-res.france.fr/rwb/2015/site/img/af-skyteam.png",
+    number: 123240089902308,
+    destination: "Paris",
     arrival: 1130,
     departure: 2100,
-    seats: [flightSeats, seat1]
+    users: [userSchema]
 })
 User.remove().then(() => {
-    return Seats.remove().then(() => {
+    return Bags.remove().then(() => {
         return Flight.remove()
     })
 }).then(() => {

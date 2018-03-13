@@ -1,6 +1,6 @@
-var schema = require('../db/schema')
-var mongoose = require('mongoose')
-var Flight = mongoose.model('Flight', schema.flightSchema)
+const mongoose = require('mongoose')
+const Schema = require('../schema')
 
+const Flight = mongoose.model('Flight', Schema.FlightSchema)
 
 module.exports = Flight

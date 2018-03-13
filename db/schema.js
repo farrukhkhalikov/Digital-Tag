@@ -1,36 +1,37 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
+mongoose.Promise = global.Promise
 
 
 ///for bags
 var bagSchema = new Schema({
     weight: Number,
     color: String,
-    flight: Number,
-    user: String,
-    tagNumber: String,
-    
-})
+    destination: String,
+    tagNumber: Number,
+    users: [userSchema]
+  })
 
 ///for user
 var userSchema = new Schema({
-    name: String,
-    destination: String,
-    flightInfo: String,
+    first_name: String,
+    last_name: String,
+    flight: Number,
     bags: [bagSchema],
     email: {
         type: String
     },
-  })
+})
+
 
 ///created schema for flights
 var flightSchema = new Schema({
     number: Number,
     destination: String,
-    arrival: String,
-    departure: String,
-    user: [userSchema]
+    arrival: Number,
+    departure: Number,
+    users: [userSchema]
 })
 
 

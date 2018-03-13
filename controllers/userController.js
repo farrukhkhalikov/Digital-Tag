@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/user')
+const User = require('../models/User')
 
 //================================
 //  READ (see all users)
@@ -8,15 +8,13 @@ const User = require('../models/user')
 
 router.get('/', (req, res) => {
     User.find({}).then(users => { 
+        
         res.json(users)
     }).catch(err => {
         console.log(err)
         res.json("caught error")
     })
 })
-
-
-
 
 
 router.get('/:userId', (req, res) => {
@@ -32,6 +30,7 @@ router.get('/:userId', (req, res) => {
 
 
 
+
 // create a new user
 router.post('/', async (req, res) => {
     try {
@@ -44,7 +43,7 @@ router.post('/', async (req, res) => {
     }
 })
 
-// delete a user
+//delete a user
 router.delete('/:userId/delete', async (req, res) => {
     try {
         await User.findByIdAndRemove(req.params.userId) 
