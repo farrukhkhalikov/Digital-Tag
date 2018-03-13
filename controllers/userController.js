@@ -1,15 +1,16 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/User')
+const User = require('../models/user')
 
 //================================
 //  READ (see all users)
 //================================
 
 router.get('/', (req, res) => {
-    User.find({}).then(users => { 
+    User.find().then(users => { 
         
-        res.json(users)
+        res.send(users)
+        console.log(users)
     }).catch(err => {
         console.log(err)
         res.json("caught error")
