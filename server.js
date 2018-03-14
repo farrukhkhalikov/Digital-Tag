@@ -23,11 +23,9 @@ connection.on('error', (err) => {
   console.log('Mongoose default connection error: ' + err)
 }) 
 
-app.use(express.static(__dirname + '/client/build/'))
+app.use(express.static(`${__dirname}/client/build`))
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/client/build/index.html')
-})
+
 
 
 // uncomment after placing your favicon in /public
@@ -44,6 +42,9 @@ app.use('/api/flights/:id/users', userController)
 app.use('/api/flights', flightController)
 //const { User } = require('./db/schema')
 
+app.get('/*', (req, res) => {
+  res.sendFile(`${__dirname}/client/build/index.html`)
+})
 
 const router = express.Router()
 app.use(function(req, res, next) {
