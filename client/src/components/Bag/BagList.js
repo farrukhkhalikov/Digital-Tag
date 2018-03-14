@@ -35,8 +35,6 @@ class BagList extends Component {
 export default BagList
 
 const FormContainer = styled.div`
-
-
 `
 
 const BagContainer = styled.div`

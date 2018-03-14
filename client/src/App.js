@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 import './App.css';
 import Home from './components/Home'
-import User from './components/User'
-import BagList from './components/BagList'
-import NewUser from './components/NewUser'
-import NewBag from './components/NewBag'
-import UserEditDelete from './components/UserEditDelete'
+import User from './components/user/User'
+import BagList from './components/Bag/BagList'
+import NewUser from './components/user/NewUser'
+import NewBag from './components/Bag/NewBag'
+import UserEditDelete from './components/user/UserEditDelete'
+import FlightList from './components/flight/FlightList'
 
 
 class App extends Component {
@@ -87,7 +88,7 @@ class App extends Component {
     const makeNewUser = () => (<NewUser createUser={this.createUser} users={this.state.users} />)
     const editUser = (props) => (<UserEditDelete updateUser={this.updateUser} UserDataBase={this.userDatabase}  deleteUser={this.deleteUser} users={this.state.users} {...props} />)
 
-    // const DataOfGifts = () => (<GiftList MyGifts={this.state.gifts} />)
+    // const DataOfBags = () => (<BagList MyBags={this.state.bags} />)
 
     const AllBags = () => (<BagList MyBags={this.state.bags} userID={this.state.userID} />)
 
@@ -99,6 +100,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/flight" component={FlightList} />
           <Route exact path="/users" component={DataOfUsers} />
           <Route exact path="/new" component={makeNewUser} />
           <Route exact path="/user" component={User} />
@@ -111,4 +113,3 @@ class App extends Component {
 }
 
 export default App;
-
