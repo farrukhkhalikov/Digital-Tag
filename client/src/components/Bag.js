@@ -25,10 +25,10 @@ class Bag extends Component {
    
         return (
             <div>
-                <Name>{this.props.bag[0].color}</Name>
-                <Name>{this.props.bag[0].weight}</Name>
-                <Name>{this.props.bag[0].tagNumber}</Name>
-                <Name>{this.props.bag[0].destination}</Name>
+                <Name>Color: {this.props.bag[0].color}</Name>
+                <Name>Weight: {this.props.bag[0].weight}</Name>
+                <Name>Tag ID: {this.props.bag[0].tagNumber}</Name>
+                <Name>Destination: {this.props.bag[0].destination}</Name>
             </div>
         );
     }
@@ -37,9 +37,7 @@ class Bag extends Component {
 export default Bag;
 
 const Name = styled.div`
- height:15px;
- width:25px;
- background-color:green;
+ padding: 10px;
  cursor:pointer;
  &:hover{
 background-color:gold;

@@ -4,6 +4,22 @@ import { BrowserRouter as Router, Link, Route, Switch, Redirect } from 'react-ro
 import axios from 'axios'
 import Bag from './Bag';
 
+const UserWrapper = styled.div`
+
+font-size:15px;
+text-align:center;
+
+`
+
+
+const Name = styled.div`
+text-align: center;
+ padding: 15px;
+ cursor:pointer;
+ &:hover{
+background-color:gold;
+ }
+ `
 
 
 const Edit = styled.button`
@@ -63,14 +79,14 @@ class Flight extends Component {
         return (
             <UserWrapper>
                 <div className="picWrapper">
-                    <Name>{this.state.flight.number}</Name>
-                    <Name>{this.state.flight.destination}</Name>
-                    <Name>{this.state.flight.arrival}</Name>
-                    <Name>{this.state.flight.departure}</Name>
+                    <Name>Flight #: {this.state.flight.number}</Name>
+                    <Name>Destination: {this.state.flight.destination}</Name>
+                    <Name>Arrival Time: {this.state.flight.arrival}</Name>
+                    <Name>Departure Time: {this.state.flight.departure}</Name>
 
                     {/* {this.state.flight.users.first_name} */}
                     {/* {console.log(this.state.flight.users)} */}
-                   {this.state.flight.users.first_name}
+                   <Name>Passenger: {this.state.flight.users.first_name}</Name>
 
                 </div>
 
@@ -124,39 +140,4 @@ export default Flight
 //     : null}
 
 
-const UserWrapper = styled.div`
-display:flex;
-flex-direction:row;
-font-size:15px;
-align-items:center;
-img {
-  height:200px;
-  width:190px;
-  border:solid 1px black;
-}
-`
-const InfoWrapper = styled.div`
-border:solid 1px black;
-height:200px;
-`
-const LinkWrapper = styled.div`
- display:flex;
- align-items:center;
- justify-content:center;
- flex-direction: row;
- margins: 2px 0 0 2px;
- 
-  a {
-  margin: 2px 3px 4px 5px;
-}
- `
 
-const Name = styled.div`
- height:15px;
- width:25px;
- background-color:green;
- cursor:pointer;
- &:hover{
-background-color:gold;
- }
- `
