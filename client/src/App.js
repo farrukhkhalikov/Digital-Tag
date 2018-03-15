@@ -10,7 +10,7 @@ import User from './components/User'
 import UserEditDelete from './components/UserEditDelete'
 import Flight from './components/Flight'
 import FlightList from './components/FlightList'
-
+import NavBar from './components/NavBar'
 class App extends Component {
 
   state = {
@@ -98,15 +98,19 @@ class App extends Component {
 
     const makeNewFlight = () => (<NewFlight createFlight={this.createFlight} Flights={this.state.Flights} />)
     const allFlights = () => (<Home flights={this.state.flights}/>)
-    const flightId = (props) => (<Flight flights={this.state.flights} {...props} />) 
+    const flightId = (props) => (<Flight flights={this.state.flights} {...props} flightDatabase = {this.flightDatabase}/>) 
 
 
     return (
       <Router>
+        <div>
+                <NavBar />
+
         <Switch>
+
           <Route exact path="/" render={allFlights} />
           <Route exact path="/flight/:flightId" render={flightId} />
-          {/* <Route exact path="/new" component={makeNewUser} />  */}
+          <Route exact path="/new" render={makeNewFlight} /> 
           {/* <Route exact path="/user" component={User} /> */}
           {/* <Route exact path="/flight/:flightId" component={flightId} /> */}
           {/* <Route exact path="/user/:userId/Flights" component={AllFlights} />
@@ -114,6 +118,7 @@ class App extends Component {
           <Route exact path="/user/:userId/new-Flight" component={makeNewFlight} />
           <Route exact path="*" render={() => (<h4>Page not found!</h4>)} /> */}
         </Switch>
+        </div>
       </Router>
     )
   }

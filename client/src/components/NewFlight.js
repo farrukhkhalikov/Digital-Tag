@@ -1,15 +1,28 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Redirect } from 'react-router-dom'
-
+import axios from 'axios'
 
 
 
 class NewFlight extends Component {
 
     state = {
-        newFlight: [],
+        newFlight: {
+            flightdestination: ''
+        },
         redirect: false
+    }
+
+    createFlight = () => {
+        const payload = this.state.newFlight
+        axios.post('/api/flights' , payload).then(res => {
+            console.log(res.data)
+            // const newFlightId = res.data._id
+            this.setState({redirect: true})
+        }).catch (err => {
+            console.log(err)
+        })
     }
     //this is a function that handles the changes the user makes
     handleChange = (event) => {
@@ -18,7 +31,7 @@ class NewFlight extends Component {
         let val = event.target.value
         // update the new information
         // and add it to
-        const newFlight = { ...this.state.newFlight }
+        const newFlight = { ...this.state }
         newFlight[attribute] = val
         this.setState({ newFlight })
     }
@@ -29,7 +42,7 @@ class NewFlight extends Component {
     }
     render() {
         if (this.state.redirect) {
-            return <Redirect to="./Flights" />
+            return <Redirect to="/" />
         }
         return (
             <NewUserContainer>
@@ -41,10 +54,10 @@ class NewFlight extends Component {
                     <div className="Flight-form">
                         <input
                             onChange={this.handleChange}
-                            name="FlightName"
-                            placeholder="Flight name"
+                            name="destination"
+                            placeholder="Flight destination"
                             type="text" required
-                            value={this.state.newFlight.FlightName} />
+                            value={this.state.newFlight.destination} />
                     </div>
                     <button className="button" type="submit">
                         Submit
@@ -56,6 +69,10 @@ class NewFlight extends Component {
 }
 
 export default NewFlight
+
+
+
+
 //background from Taylor Vowell codpen
 const NewUserContainer = styled.div`
 width:100vw;

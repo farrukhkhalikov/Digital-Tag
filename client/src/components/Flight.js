@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, Switch, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -18,8 +18,23 @@ height: 33px;
 `
 class Flight extends Component {
     state= {
-        flight: {}
+        flight: {},
+        redirect: false
     }
+
+   deleteFlight = () => {
+       const flightId = this.props.match.params.flightId
+       this.setState({redirect: true})
+       axios.delete(`/api/flights/${flightId}`).then(res => {
+           
+       }).catch(err => {
+           console.log(err)
+       }).then(()=> {
+           this.props.flightDatabase()
+       })
+   }
+
+
     componentDidMount() {
         const flightId = this.props.match.params.flightId
         axios.get(`/api/flights/${flightId}`).then(res => {
@@ -32,6 +47,9 @@ class Flight extends Component {
         }
 
     render() {
+        if (this.state.redirect === true) {
+            return <Redirect to="/" />
+        }
         return (
             <UserWrapper>
                 <div className="picWrapper">
@@ -47,12 +65,19 @@ class Flight extends Component {
                                 
                                 <div key={i}>
                                     <Name>{user.first_name}</Name> 
+                                    <Name>{user.last_name}</Name> 
+                                    <Name>{user.email}</Name> 
+                                    <Name>{user.flight}</Name> 
+
 
 
 
                      </div>   
                      )})) 
                       : null} 
+                </div>
+                <div>
+                    <button onClick={this.deleteFlight}>Delete</button>
                 </div>
                             
             </UserWrapper>
