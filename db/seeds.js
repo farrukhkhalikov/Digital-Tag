@@ -62,7 +62,7 @@ var flight = new Flight({
     destination: "Amsterdam",
     arrival: 1445,
     departure: 0900,
-    users: [owen]
+    users: owen
 })
 
 var flight2 = new Flight({
@@ -70,7 +70,7 @@ var flight2 = new Flight({
     destination: "Frankfurt",
     arrival: 1315,
     departure: 1800,
-    users: [ryan]
+    users: ryan
 })
 
 var flight3 = new Flight({
@@ -78,7 +78,7 @@ var flight3 = new Flight({
     destination: "London",
     arrival: 0930,
     departure: 1700,
-    users: [steve]
+    users: steve
 })
 
 var flight4 = new Flight({
@@ -86,7 +86,7 @@ var flight4 = new Flight({
     destination: "Paris",
     arrival: 1130,
     departure: 2100,
-    users: []
+    users: {}
 })
 
 User.remove().then(() => {

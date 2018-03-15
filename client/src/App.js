@@ -11,6 +11,7 @@ import UserEditDelete from './components/UserEditDelete'
 import Flight from './components/Flight'
 import FlightList from './components/FlightList'
 import NavBar from './components/NavBar'
+import Bag from './components/Bag'
 class App extends Component {
 
   state = {
@@ -111,7 +112,7 @@ class App extends Component {
           <Route exact path="/" render={allFlights} />
           <Route exact path="/flight/:flightId" render={flightId} />
           <Route exact path="/new" render={makeNewFlight} /> 
-          <Route exact path="/user" component={User} />
+          <Route exact path="/flight/:flightId/user/:userId/bag" component={Bag} />
           {/* <Route exact path="/flight/:flightId" component={flightId} /> */}
           {/* <Route exact path="/user/:userId/Flights" component={AllFlights} />
           <Route exact path="/user/:userId/Flight/:FlightId" component={Flight} />

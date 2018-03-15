@@ -30,7 +30,7 @@ var flightSchema = new Schema({
     destination: String,
     arrival: Number,
     departure: Number,
-    users: [userSchema]
+    users: userSchema
 })
 
 
