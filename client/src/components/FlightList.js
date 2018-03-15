@@ -1,43 +1,45 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import Bag from './Bag'
+import Flights from './Flights'
 
 
 
 
-class BagList extends Component {
+class FlightList extends Component {
 
     render() {
-        const bagList = this.props.MyBags.map((bag, index) => {
+        const FlightList = this.props.MyFlights.map((Flight, index) => {
             return (
-                <Bag
+                <Flights
                     key={index}
-                    bagName={bag.bagName}
-                    id={bag._id} />)
+                    FlightName={Flight.FlightName}
+                    id={Flight._id} />)
 
         })
 
         return (
-            <BagContainer >
+            <FlightContainer >
                 <div className="NavButtons">
                     <Link to="/">Home</Link>
-                    <Link to="./new-bag">Create Bag</Link>
-                    <h1>Bag List</h1>
+                    <Link to="./new-Flight">Create Flight</Link>
+                    <h1>Flights List</h1>
                 </div>
                 <div>
-                    <div>{bagList}</div>
+                    <div>{FlightList}</div>
                 </div>
-            </BagContainer>
+            </FlightContainer>
         )
     }
 }
-export default BagList
+export default FlightList
 
 const FormContainer = styled.div`
+
+
 `
 
-const BagContainer = styled.div`
+const FlightContainer = styled.div`
 display:flex;
 flex-direction:column;
 flex-wrap:wrap;

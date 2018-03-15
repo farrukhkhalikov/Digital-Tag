@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
-import UserList from 'styled-components'
+// import UserList from 'styled-components'
 
 
 class Home extends Component {
@@ -12,14 +12,20 @@ class Home extends Component {
                 <div>
                     <img
                         src=""
-                        alt="" className="main-img" />
+                        alt="flight" className="main-img" />
                     <div className="models-container">
                         <h1>Flights list</h1>
+                        {this.props.flights.map((flight, i) => {
+                            return (
+                                <div key={i}>
+                                    <Link to={`/flight/${flight._id}`} >
+                                        { flight.destination }
+                                    </Link>
+                                    </div>
+                            )
+                        })}
                         
-                        <div>
-                            <Link to="/flight">Flight</Link>
-                        </div>
-                       
+
                     </div>
                 </div>
             </Container>
@@ -62,3 +68,5 @@ const Container = styled.div`
     }
     }
 `
+
+

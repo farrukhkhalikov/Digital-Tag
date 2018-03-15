@@ -3,19 +3,25 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 import './App.css';
 import Home from './components/Home'
-import User from './components/user/User'
-import BagList from './components/Bag/BagList'
-import NewUser from './components/user/NewUser'
-import NewBag from './components/Bag/NewBag'
-import UserEditDelete from './components/user/UserEditDelete'
-import FlightList from './components/flight/FlightList'
-
+import UserList from './components/UserList'
+import NewUser from './components/NewUser'
+import NewFlight from './components/NewFlight'
+import User from './components/User'
+import UserEditDelete from './components/UserEditDelete'
+import Flight from './components/Flight'
+import FlightList from './components/FlightList'
 
 class App extends Component {
 
   state = {
     users: [],
+    flights: [],
     userID: []
+  }
+
+  componentDidMount() {
+    // this.userDatabase()
+    this.flightDatabase()
   }
 
   userDatabase = () => {
@@ -27,26 +33,27 @@ class App extends Component {
       })
   }
 
-  bagDatabase = () => {
+  
+  flightDatabase = () => {
     axios
-      .get('/api/bags')
+      .get('/api/flights')
       .then(response => {
-        const bags = response.data
-        this.setState({ bags: bags})
+        const flights = response.data
+        this.setState({ flights: flights})
       })
   }
 
-  createUser = async (user) => {
+  createUser = async (newUser) => {
     // send the user to the database
-    const response = await axios.post(`/api/users`, user)
+    const response = await axios.post(`/api/users`, {user : newUser})
 
     // grab the new user we just created in the database
-    const newUser = response.data
+    //const newUser = response.data
 
     // put that new user into our list of users on the `state`
     const users = [...this.state.users]
     users.push(newUser)
-    this.setState({ users })
+    this.setState({ users: response.data.user })
   }
   // //To edit a user
 
@@ -63,49 +70,49 @@ class App extends Component {
     await axios.delete(`/api/users/${user._id}/delete`)
   }
 
-  componentWillMount() {
-    this.userDatabase()
-    this.bagDatabase()
-  }
 
-  createBag = async (bag) => {
+
+  createFlight = async (Flight) => {
     // send the user to the database
-    const response = await axios.post(`/api/bags`, bag)
+    const response = await axios.post(`/api/Flights`, Flight)
 
     // grab the new user we just created in the database
-    const newBag = response.data
+    const newFlight = response.data
 
     // put that new user into our list of users on the `state`
-    const bags = [...this.state.bags]
-    bags.push(newBag)
-    this.setState({ bags })
+    const Flights = [...this.state.Flights]
+    Flights.push(newFlight)
+    this.setState({ Flights })
   }
 
   render() {
     ////the function to grab all the users
-    const DataOfUsers = () => (<User MyUsers={this.state.users} />)
+    const DataOfUsers = () => (<UserList MyUsers={this.state.users} />)
 
     const makeNewUser = () => (<NewUser createUser={this.createUser} users={this.state.users} />)
     const editUser = (props) => (<UserEditDelete updateUser={this.updateUser} UserDataBase={this.userDatabase}  deleteUser={this.deleteUser} users={this.state.users} {...props} />)
 
-    // const DataOfBags = () => (<BagList MyBags={this.state.bags} />)
+    // const DataOfFlights = () => (<FlightList MyFlights={this.state.Flights} />)
 
-    const AllBags = () => (<BagList MyBags={this.state.bags} userID={this.state.userID} />)
+    const AllFlights = () => (<FlightList MyFlights={this.state.Flights} userID={this.state.userID} />)
 
-    const makeNewBag = () => (<NewBag createBag={this.createBag} bags={this.state.bags} />)
-
+    const makeNewFlight = () => (<NewFlight createFlight={this.createFlight} Flights={this.state.Flights} />)
+    const allFlights = () => (<Home flights={this.state.flights}/>)
+    const flightId = (props) => (<Flight flights={this.state.flights} {...props} />) 
 
 
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/flight" component={FlightList} />
-          <Route exact path="/users" component={DataOfUsers} />
-          <Route exact path="/new" component={makeNewUser} />
-          <Route exact path="/user" component={User} />
-          <Route exact path="/user/:userId" component={editUser} />
-          <Route exact path="*" render={() => (<h4>Page not found!</h4>)} />
+          <Route exact path="/" render={allFlights} />
+          <Route exact path="/flight/:flightId" render={flightId} />
+          {/* <Route exact path="/new" component={makeNewUser} />  */}
+          {/* <Route exact path="/user" component={User} /> */}
+          {/* <Route exact path="/flight/:flightId" component={flightId} /> */}
+          {/* <Route exact path="/user/:userId/Flights" component={AllFlights} />
+          <Route exact path="/user/:userId/Flight/:FlightId" component={Flight} />
+          <Route exact path="/user/:userId/new-Flight" component={makeNewFlight} />
+          <Route exact path="*" render={() => (<h4>Page not found!</h4>)} /> */}
         </Switch>
       </Router>
     )
@@ -113,3 +120,4 @@ class App extends Component {
 }
 
 export default App;
+

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
-class BagInfo extends Component {
+class FlightInfo extends Component {
     render() {
         return (
             <div>
-                <h1>BagInfo page</h1>
+                <h1>FlightInfo page</h1>
             </div>
         )
     }
 }
 
-export default BagInfo
+export default FlightInfo

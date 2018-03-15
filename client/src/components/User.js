@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 
 
@@ -15,19 +16,39 @@ background-color: red;
 width: 58px;
 height: 33px;
 `
-class Bag extends Component {
+class User extends Component {
+
+    state = {
+        user: {
+            first_name: "",
+            last_name: "",
+            email: "",
+            redirect: false,
+        
+        }
+    }
+
+    updateCurrentState = () => {
+        axios.get(`/api/users/${this.props.match.params.userId}`, this.state.user)
+            .then(response => {
+                this.setState({ user: response.data })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
 
     render() {
         return (
             <UserWrapper>
                 <div className="picWrapper">
-                    <Name>{this.props.bagName}</Name>
+                    <Name>{this.user.firstName}</Name>
                 </div>
             </UserWrapper>
         )
     }
 }
-export default Bag
+export default User
 
 
 const UserWrapper = styled.div`
