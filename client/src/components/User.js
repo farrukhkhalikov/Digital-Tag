@@ -42,7 +42,7 @@ class User extends Component {
         return (
             <UserWrapper>
                 <div className="picWrapper">
-                    <Name>{this.user.firstName}</Name>
+                    <Name>{this.state.user.first_name}</Name>
                 </div>
             </UserWrapper>
         )

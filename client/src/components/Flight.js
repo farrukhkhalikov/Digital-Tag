@@ -17,34 +17,35 @@ width: 58px;
 height: 33px;
 `
 class Flight extends Component {
-    state= {
-        flight: {},
+    state = {
+        flight: {
+        },
         redirect: false
     }
 
-   deleteFlight = () => {
-       const flightId = this.props.match.params.flightId
-       this.setState({redirect: true})
-       axios.delete(`/api/flights/${flightId}`).then(res => {
-           
-       }).catch(err => {
-           console.log(err)
-       }).then(()=> {
-           this.props.flightDatabase()
-       })
-   }
+    deleteFlight = () => {
+        const flightId = this.props.match.params.flightId
+        this.setState({ redirect: true })
+        axios.delete(`/api/flights/${flightId}`).then(res => {
+
+        }).catch(err => {
+            console.log(err)
+        }).then(() => {
+            this.props.flightDatabase()
+        })
+    }
 
 
     componentDidMount() {
         const flightId = this.props.match.params.flightId
         axios.get(`/api/flights/${flightId}`).then(res => {
             const flight = res.data
-            this.setState({flight: flight})
+            this.setState({ flight: flight })
         }).catch(err => {
             console.log(err)
         })
-        
-        }
+
+    }
 
     render() {
         if (this.state.redirect === true) {
@@ -58,28 +59,55 @@ class Flight extends Component {
                     <Name>{this.state.flight.arrival}</Name>
                     <Name>{this.state.flight.departure}</Name>
                     {/* {console.log(this.state.flight.users)} */}
-                    { this.state.flight.users
+                    {this.state.flight.users
 
-                     ?(this.state.flight.users.map((user, i) => {
+                        ? (this.state.flight.users.map((user, i) => {
+                            //  console.log('user bag', user.bags)
                             return (
-                                
+
                                 <div key={i}>
-                                    <Name>{user.first_name}</Name> 
-                                    <Name>{user.last_name}</Name> 
-                                    <Name>{user.email}</Name> 
-                                    <Name>{user.flight}</Name> 
+                                    <Name>{user.first_name}</Name>
+                                    <Name>{user.last_name}</Name>
+                                    <Name>{user.email}</Name>
+                                    <Name>{user.flight}</Name>
+                                    {user.bags
+
+                                        ? (user.bags.map((bag, i) => {
+                                            //  console.log('user bag', user.bags)
+                                            return (
+
+                                                <div key={i}>
+                                                                                    <Name>{bag.color}</Name>
+                                                                                    <Name>{bag.weight}</Name>
+                                                                                    <Name>{bag.tagNumber}</Name>
+                                                                                    <Name>{bag.destination}</Name>
+
+                                                
+                                                    
 
 
 
 
-                     </div>   
-                     )})) 
-                      : null} 
+                                                </div>
+                                            )
+                                        }))
+                                        : null}
+
+
+
+
+
+                                </div>
+                            )
+                        }))
+                        : null}
+
                 </div>
+
                 <div>
                     <button onClick={this.deleteFlight}>Delete</button>
                 </div>
-                            
+
             </UserWrapper>
         )
     }
