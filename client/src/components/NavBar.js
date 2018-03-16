@@ -15,9 +15,9 @@ class NavBar extends Component {
             <NavWrapper>
                 <div>
                     
-                        <a href='/new'>Create a New Flight</a>
+                        <Link to={'/new'}> Create a New Flight </Link>
                         <br />
-                        <a href='/'>Home</a>
+                        <Link to={'/'}> Home </Link>
                     
 
                 </div>
