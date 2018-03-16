@@ -23,7 +23,7 @@ class Home extends Component {
                 <div>
                     <FlexMaster>
                         <img
-                            src="http://simfalogic.news/wp-content/uploads/2018/02/Eg%C3%A9sz-napra-lez%C3%A1rt%C3%A1k-London-egyik-rep%C3%BCl%C5%91ter%C3%A9t-vil%C3%A1gh%C3%A1bor%C3%BAs-bomba-miatt-720x480.jpg"
+                            src="http://www.familytravelguide.ca/wp-content/uploads/2016/11/Rimowa_electronicTag_005.jpg"
                             alt="flight" className="main-img" />
                     </FlexMaster>
                     <div className="models-container">
