@@ -42,3 +42,5 @@ Sources that I used as an inspiration to build this app, which is already in use
 
 Link to Figma (https://www.figma.com/file/P9NCT3zKemNkpeJTRD2yhGJY/Digital-Tag)
 
+Link to Heroku (https://fast-plains-62701.herokuapp.com/)
+
