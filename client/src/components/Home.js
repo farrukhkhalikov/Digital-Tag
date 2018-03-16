@@ -5,12 +5,14 @@ import axios from 'axios'
 // import UserList from 'styled-components'
 
 
-const ImageWrapper = styled.div`
+const FlexMaster = styled.div`
+display: flex;
+
 img {
-    width: 60%;
-    position: relative;
+    width: 100%;
 }
 `
+
 
 
 class Home extends Component {
@@ -18,27 +20,25 @@ class Home extends Component {
         return (
             <Container>
                 <div>
-                    <ImageWrapper>
-                    <img
-                        src="http://simfalogic.news/wp-content/uploads/2018/02/Eg%C3%A9sz-napra-lez%C3%A1rt%C3%A1k-London-egyik-rep%C3%BCl%C5%91ter%C3%A9t-vil%C3%A1gh%C3%A1bor%C3%BAs-bomba-miatt-720x480.jpg"
-                        alt="flight" className="main-img" />
-                        </ImageWrapper>
+                    <FlexMaster>
+                        <img
+                            src="http://simfalogic.news/wp-content/uploads/2018/02/Eg%C3%A9sz-napra-lez%C3%A1rt%C3%A1k-London-egyik-rep%C3%BCl%C5%91ter%C3%A9t-vil%C3%A1gh%C3%A1bor%C3%BAs-bomba-miatt-720x480.jpg"
+                            alt="flight" className="main-img" />
+                    </FlexMaster>
                     <div className="models-container">
                         <h1>Flights list</h1>
                         {this.props.flights.map((flight, i) => {
                             return (
                                 <div key={i}>
                                     <Link to={`/flight/${flight._id}`} >
-                                        { flight.destination }
+                                        {flight.destination}
                                     </Link>
-                                    </div>
+                                </div>
                             )
                         })}
-                        
-
                     </div>
                 </div>
-             </Container>
+            </Container>
         )
     }
 }
@@ -52,6 +52,7 @@ export default Home
 
 //background from codepen. User Taylor Vowell
 const Container = styled.div`
+text-align: center;
   font-family: 'Lato', sans-serif;
   font-family: 'Playfair Display', serif;
   font-weight: 300;
@@ -81,7 +82,6 @@ const Container = styled.div`
     text-shadow:2px 2px 2px #000000;
     }
     }
-    align-items: center !important;
 `
 
 

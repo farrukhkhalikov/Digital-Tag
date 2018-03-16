@@ -6,7 +6,7 @@ const NavWrapper = styled.div`
 text-align: center;
 background-color: rgb(105, 155, 200);
 height: 75px;
-margin-bottom: 20px;
+
 `
 
 class NavBar extends Component {
