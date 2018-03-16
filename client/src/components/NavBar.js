@@ -14,11 +14,11 @@ class NavBar extends Component {
         return (
             <NavWrapper>
                 <div>
-                    
-                        <Link to={'/new'}> Create a New Flight </Link>
-                        <br />
-                        <Link to={'/'}> Home </Link>
-                    
+
+                    <Link to={'/new'}> Create a New Flight </Link>
+                    <br />
+                    <Link to={'/'}> Home </Link>
+
 
                 </div>
             </NavWrapper>

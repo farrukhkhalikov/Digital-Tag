@@ -37,8 +37,8 @@ class Flight extends Component {
     state = {
         BagView: false,
         flight: {
-            users:{
-                bags:[]
+            users: {
+                bags: []
             }
         },
         redirect: false
@@ -58,7 +58,7 @@ class Flight extends Component {
 
 
 
-    
+
 
     componentDidMount() {
         const flightId = this.props.match.params.flightId
@@ -70,10 +70,10 @@ class Flight extends Component {
         })
 
     }
-   
+
     toggleBagView = () => {
         this.setState({ BagView: !this.state.BagView })
-      }
+    }
 
     render() {
         if (this.state.redirect === true) {
@@ -87,9 +87,10 @@ class Flight extends Component {
                     <Name>Arrival Time: {this.state.flight.arrival}</Name>
                     <Name>Departure Time: {this.state.flight.departure}</Name>
 
-                    {/* {this.state.flight.users.first_name} */}
-                    {/* {console.log(this.state.flight.users)} */}
-                   <Name>Passenger: {this.state.flight.users.first_name}</Name>
+                 
+                    <Name>Passenger Name: {this.state.flight.users.first_name}</Name>
+                    <Name>Passenger Last Name: {this.state.flight.users.last_name}</Name>
+
 
                 </div>
 
@@ -97,13 +98,13 @@ class Flight extends Component {
                     <button onClick={this.deleteFlight}>Delete</button>
                 </div>
                 <div>
-                <button onClick={this.toggleBagView}>View Luggage</button>
-                    {this.state.BagView 
-                    ? <Bag bag={this.state.flight.users.bags} />
-                   : null
+                    <button onClick={this.toggleBagView}>View Luggage</button>
+                    {this.state.BagView
+                        ? <Bag bag={this.state.flight.users.bags} />
+                        : null
                     }
                 </div>
-                
+
             </UserWrapper>
         )
     }

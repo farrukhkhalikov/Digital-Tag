@@ -24,7 +24,7 @@ class User extends Component {
             last_name: "",
             email: "",
             redirect: false,
-        
+
         }
     }
 

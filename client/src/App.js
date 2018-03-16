@@ -31,17 +31,17 @@ class App extends Component {
       })
   }
 
-  
+
   flightDatabase = () => {
     axios
       .get('/api/flights')
       .then(response => {
         const flights = response.data
-        this.setState({ flights: flights})
+        this.setState({ flights: flights })
       })
   }
 
- 
+
   // //To edit a user
 
 
@@ -66,23 +66,23 @@ class App extends Component {
     const AllFlights = () => (<FlightList MyFlights={this.state.Flights} userID={this.state.userID} />)
 
     const makeNewFlight = () => (<NewFlight createFlight={this.createFlight} Flights={this.state.Flights} />)
-    const allFlights = () => (<Home flights={this.state.flights}/>)
-    const flightId = (props) => (<Flight flights={this.state.flights} {...props} flightDatabase = {this.flightDatabase}/>) 
+    const allFlights = () => (<Home flights={this.state.flights} />)
+    const flightId = (props) => (<Flight flights={this.state.flights} {...props} flightDatabase={this.flightDatabase} />)
 
 
     return (
       <Router>
         <div>
-                <NavBar />
+          <NavBar />
 
-        <Switch>
+          <Switch>
 
-          <Route exact path="/" render={allFlights} />
-          <Route exact path="/flight/:flightId" render={flightId} />
-          <Route exact path="/new" render={makeNewFlight} /> 
-          <Route exact path="/flight/:flightId/user/:userId/bag" component={Bag} />
-        
-        </Switch>
+            <Route exact path="/" render={allFlights} />
+            <Route exact path="/flight/:flightId" render={flightId} />
+            <Route exact path="/new" render={makeNewFlight} />
+            <Route exact path="/flight/:flightId/user/:userId/bag" component={Bag} />
+
+          </Switch>
         </div>
       </Router>
     )
