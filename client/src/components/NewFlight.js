@@ -59,6 +59,30 @@ class NewFlight extends Component {
                             type="text" required
                             value={this.state.newFlight.destination} />
                     </div>
+                    <div className="Flight-form">
+                        <input
+                            onChange={this.handleChange}
+                            name="number"
+                            placeholder="Flight number"
+                            type="text" required
+                            value={this.state.newFlight.number} />
+                    </div>
+                    <div className="Flight-form">
+                        <input
+                            onChange={this.handleChange}
+                            name="arrival"
+                            placeholder="Flight arrival"
+                            type="text" required
+                            value={this.state.newFlight.arrival} />
+                    </div>
+                    <div className="Flight-form">
+                        <input
+                            onChange={this.handleChange}
+                            name="departure"
+                            placeholder="Flight departure"
+                            type="text" required
+                            value={this.state.newFlight.departure} />
+                    </div>
                     <button className="button" type="submit">
                         Submit
           </button>

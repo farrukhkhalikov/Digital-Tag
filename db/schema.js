@@ -30,7 +30,10 @@ var flightSchema = new Schema({
     destination: String,
     arrival: Number,
     departure: Number,
-    users: userSchema
+    users: {
+        type: userSchema,
+        default: {} //prevent user from being null
+    }
 })
 
 
