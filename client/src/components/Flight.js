@@ -57,6 +57,9 @@ class Flight extends Component {
     }
 
 
+
+    
+
     componentDidMount() {
         const flightId = this.props.match.params.flightId
         axios.get(`/api/flights/${flightId}`).then(res => {

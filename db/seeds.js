@@ -10,18 +10,25 @@ mongoose.connect(process.env.MONGODB_URI)
 
 
 var bag1 = new Bags({
-    weight: 123,
-    color: "black",
+    weight: "123 lbs",
+    color: "Black",
     destination: "Paris",
     tagNumber: 124123123,
 
 })
 
 var flightBags = new Bags({
-    weight: 120,
-    color: "grey",
+    weight: "120lbs",
+    color: "Grey",
     destination: "Frankfurt",
     tagNumber: 123134324,
+})
+var bag2 = new Bags({
+    weight: "200 lbs",
+    color: "Blue",
+    destination: "Paris",
+    tagNumber: 124123123,
+
 })
 
 var ryan = new User({
@@ -41,7 +48,7 @@ var steve = new User({
     last_name: 'Gosling',
     flight: 0987,
     email: 'steve@gmail.com',
-    bags: []
+    bags: [bag2]
 
 })
 
@@ -60,32 +67,32 @@ var owen = new User({
 var flight = new Flight({
     number: 9827439287394887,
     destination: "Amsterdam",
-    arrival: 1445,
-    departure: 0900,
+    arrival: "14:45",
+    departure: "09:00",
     users: owen
 })
 
 var flight2 = new Flight({
     number: 090897239470978,
     destination: "Frankfurt",
-    arrival: 1315,
-    departure: 1800,
+    arrival: "13:15",
+    departure: "18:00",
     users: ryan
 })
 
 var flight3 = new Flight({
     number: 0923840239840998203,
     destination: "London",
-    arrival: 0930,
-    departure: 1700,
+    arrival: "09:30",
+    departure: "17:00",
     users: steve
 })
 
 var flight4 = new Flight({
     number: 123240089902308,
     destination: "Paris",
-    arrival: 1130,
-    departure: 2100,
+    arrival: "11:30",
+    departure: "21:00",
     users: {}
 })
 

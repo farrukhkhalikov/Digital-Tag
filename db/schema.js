@@ -6,7 +6,7 @@ mongoose.Promise = global.Promise
 
 ///for bags
 var bagSchema = new Schema({
-    weight: Number,
+    weight: String,
     color: String,
     destination: String,
     tagNumber: Number
@@ -28,8 +28,8 @@ var userSchema = new Schema({
 var flightSchema = new Schema({
     number: Number,
     destination: String,
-    arrival: Number,
-    departure: Number,
+    arrival: String,
+    departure: String,
     users: {
         type: userSchema,
         default: {} //prevent user from being null
