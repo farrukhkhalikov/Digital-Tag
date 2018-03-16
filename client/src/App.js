@@ -41,29 +41,9 @@ class App extends Component {
       })
   }
 
-  createUser = async (newUser) => {
-    const response = await axios.post(`/api/users`, {user : newUser})
-
-   
-
-    const users = [...this.state.users]
-    users.push(newUser)
-    this.setState({ users: response.data.user })
-  }
+ 
   // //To edit a user
 
-  updateUser = async (user) => {
-    console.log(user._id)
-    const response = await axios.patch(`/api/users/${user._id}`, user)
-    const users = this.UserDatabase
-  }
-
-
-
-  deleteUser = async (user) => {
-    console.log(`from the delete router`)
-    await axios.delete(`/api/users/${user._id}/delete`)
-  }
 
 
 
