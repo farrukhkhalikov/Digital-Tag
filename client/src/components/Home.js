@@ -5,14 +5,24 @@ import axios from 'axios'
 // import UserList from 'styled-components'
 
 
+const ImageWrapper = styled.div`
+img {
+    width: 60%;
+    position: relative;
+}
+`
+
+
 class Home extends Component {
     render() {
         return (
             <Container>
                 <div>
+                    <ImageWrapper>
                     <img
-                        src=""
+                        src="http://simfalogic.news/wp-content/uploads/2018/02/Eg%C3%A9sz-napra-lez%C3%A1rt%C3%A1k-London-egyik-rep%C3%BCl%C5%91ter%C3%A9t-vil%C3%A1gh%C3%A1bor%C3%BAs-bomba-miatt-720x480.jpg"
                         alt="flight" className="main-img" />
+                        </ImageWrapper>
                     <div className="models-container">
                         <h1>Flights list</h1>
                         {this.props.flights.map((flight, i) => {
@@ -71,6 +81,7 @@ const Container = styled.div`
     text-shadow:2px 2px 2px #000000;
     }
     }
+    align-items: center !important;
 `
 
 
