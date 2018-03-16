@@ -10,7 +10,8 @@ display: flex;
 img {
     width: 70%;
     height: 70%;
-    position: relative;
+    align-items: center;
+    opacity: 0.6;
 }
 `
 
