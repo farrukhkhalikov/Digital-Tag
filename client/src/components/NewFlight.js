@@ -24,14 +24,11 @@ class NewFlight extends Component {
             console.log(err)
         })
     }
-    //this is a function that handles the changes the user makes
     handleChange = (event) => {
-        //after user fill's out the form, the information needs to be stored in a variable
         const attribute = event.target.name
         let val = event.target.value
-        // update the new information
-        // and add it to
-        const newFlight = { ...this.state }
+        
+        const newFlight = { ...this.state.newFlight }
         newFlight[attribute] = val
         this.setState({ newFlight })
     }

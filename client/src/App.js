@@ -48,6 +48,7 @@ class App extends Component {
 
 
   createFlight = async (Flight) => {
+    console.log(Flight)
     const response = await axios.post(`/api/Flights`, Flight)
 
     const newFlight = response.data
